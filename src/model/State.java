@@ -29,7 +29,7 @@ public class State{
 		legalAction = legalActions(board) ; 
 	}
 	
-	Set<Action> legalActions(int [] [] board ){
+	public Set<Action> legalActions(int [] [] board ){
 		
 		Set<Action> actions = new HashSet<Action >()  ; 
 		// Enjoy :)

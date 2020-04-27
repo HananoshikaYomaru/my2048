@@ -1,11 +1,12 @@
-package view;
+package view.GUI;
 
-/* all GUI code is taken from https://github.com/Alwayswithme/2048.java/blob/master/src/phx/Board.java
+import static view.GUI.Value.*;
+
+/* all AIGUI code is taken from https://github.com/Alwayswithme/2048.java/blob/master/src/phx/Board.java
  * 10/4 2020
  * */
 
-import java.util.HashMap;
-import static view.Value.* ; 
+import java.util.HashMap; 
 
 public class Tile {
 	private final Value val ; 

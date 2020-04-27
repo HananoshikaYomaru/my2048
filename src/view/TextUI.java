@@ -4,8 +4,7 @@ import model.State;
 import model.action.Action;
 import utils.Utils;
 
-import java.util.Scanner ; 
-import model.action.*;
+import java.util.Scanner ;
 
 public class TextUI implements IGUI{
 	

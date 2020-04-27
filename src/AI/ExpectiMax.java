@@ -23,10 +23,36 @@ public class ExpectiMax implements AI{
 		State.Action bestAct = null ; 
 		for(State.Action action : state.legalAction) {
 			double value = getValue(action, state, 1) ;
-			if(value >= max ) {
+			if(value >= max || bestAct == null) {
 				max = value ; 
-				bestAct = action ; 
-			}
+				bestAct = action ;
+			} 
+			
+		}
+		
+		/**
+		 * this error appear because of double comparison
+		 * solution 1 : epsilon comparison for double 
+		 * solution 2 : simply exclude the case , add || bestAct == null
+		 * here use the solution
+		 */
+		if(bestAct == null && !state.legalAction.isEmpty()) {
+//			Set<State.Action> actions = state.legalActions(state.getBoard()) ; 
+//			
+//			max = Double.MIN_VALUE ; 
+//			bestAct = null ; 
+//			for(State.Action action : state.legalAction) {
+//				if(action == null )throw new IllegalStateException("program bug"); 
+//					
+//				double value = getValue(action, state, 1) ;
+//				if(value >= max ) {
+//					max = value ; 
+//					bestAct = action ;
+//				} 
+//			}
+			
+			
+			throw new IllegalStateException("program bug "); 
 		}
 		return Utils.getActionObject(bestAct) ; 
 	}

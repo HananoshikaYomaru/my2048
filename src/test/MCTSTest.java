@@ -13,7 +13,8 @@ import AI.heuristic.nn.* ;
 import model.Spawn;
 import model.State;
 import utils.Utils;
-import view.GUI;
+import view.TextUI;
+import view.GUI.Game;
 
 class MCTSTest {
 
@@ -37,45 +38,12 @@ class MCTSTest {
 	}
 
 	
-	@Test
-	void test2 () {
-		GUI gui = new GUI () ; 
-		int iteration = 10 ; 
-		double average = 0 ; 
-		for(int i = 0 ; i < iteration ; ++i) {
-			State state = new State()  ; 
-			AI ai1 = new MCTS(1, 1, new OneStepPrediction()) ;  
-			AI ai2 = new Minimax(3) ;
-			AI ai3 = new ExpectiMax(3) ; 
-			ai1.setHeuristic(new Cocktail());
-			ai2.setHeuristic(new Cocktail());
-			ai3.setHeuristic(new Cocktail()) ; 
-			while(!state.legalAction.isEmpty()){
-				gui.show(state);
-				state = new State(Spawn.spawn(ai1.getAction(state).getResult(state).getBoard())) ; 
-			}
-			int score = Utils.sum(state.getBoard()) ; 
-			System.out.println(i + ":\t" + score) ; 
-			average += score ; 
-			if(new HighestNumber().getValue(state) >= 2048) {
-				gui.win();
-				GUI.playSound("sound/win.wav");
-			}
-			else {
-				gui.lose();
-				GUI.playSound("sound/loss.wav");
-			}
-		}
-		average /= (double)iteration ; 
-		System.out.println("average: " + average) ; 
-	}
 	
 	//@Test
 	void soundTest()	{
 		File testFile = new File("");
 	    String currentPath = testFile.getAbsolutePath();
 	    System.out.println("current path is: " + currentPath);
-	    GUI.playSound("sound/loss.wav");
 	}
 	
 	//@Test
@@ -87,5 +55,14 @@ class MCTSTest {
 	
 	private void changea(double a ) {
 		a = 3 ; 
+	}
+	
+	@Test
+	void test4() { 
+		Game game = new Game (null)  ;
+		AI ai = new ExpectiMax(2) ; 
+		ai.setHeuristic(new Cocktail() );
+		game.setUpAI(ai );
+		game.start();
 	}
 }
